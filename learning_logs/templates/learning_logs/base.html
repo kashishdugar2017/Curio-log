@@ -1,246 +1,143 @@
 {% load django_bootstrap5 %}
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Curio Log</title>
+    <title>{% block title %}Curio Log{% endblock title %}</title>
+
+    <meta name="description"
+          content="Curio Log is a personal learning journal where you can explore curiosities, record discoveries, and keep track of what you learn.">
+
+    <meta name="keywords"
+          content="Curio Log, learning log, curiosities, discoveries, learning journal">
+
+    <meta name="author" content="Curio Log">
 
     {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
     <style>
         body {
-            background: #fcf8ff !important;
-            color: #5b5665 !important;
-            font-family: Arial, sans-serif;
+            background-color: #fcf8ff;
+            color: #6f6585;
         }
 
         .navbar {
-            background: #e9e1f7 !important;
-            border: none !important;
-            border-radius: 0 0 20px 20px !important;
-            padding: 14px 20px !important;
+            background-color: #e9e1f7 !important;
         }
 
         .navbar-brand {
-            color: #655b7d !important;
-            font-weight: bold;
-            font-size: 1.5rem;
+            color: #6f6585 !important;
+            font-weight: 600;
         }
 
         .nav-link {
-            color: #655b7d !important;
-            border-radius: 15px !important;
-            padding: 8px 14px !important;
-        }
-
-        .nav-link:hover {
-            background: #f6dce8 !important;
-            color: #655b7d !important;
-        }
-
-        .navbar-text {
-            color: #655b7d !important;
-        }
-
-        h1, h2, h3 {
             color: #6f6585 !important;
         }
 
-        .btn-primary {
-            background: #b9dff2 !important;
-            border: none !important;
-            border-radius: 18px !important;
-            padding: 10px 18px !important;
-            color: #53616a !important;
-        }
-
-        .btn-primary:hover {
-            background: #a8d4e9 !important;
-            color: #53616a !important;
-        }
-
-        .list-group {
-            border-radius: 18px !important;
-            overflow: hidden !important;
-        }
-
-        .list-group-item {
-            background: #fff5fa !important;
-            border: none !important;
-            border-bottom: 2px solid #f1e2eb !important;
-            padding: 15px !important;
-        }
-
-        .list-group-item:last-child {
-            border-bottom: none !important;
-        }
-
-        .list-group-item a {
-            color: #756b8c !important;
-            text-decoration: none !important;
-        }
-
-        .list-group-item a:hover {
-            color: #d28aa7 !important;
+        .nav-link:hover {
+            background-color: #f6dce8;
+            border-radius: 10px;
         }
 
         .card {
-            background: #f0faf6 !important;
-            border: none !important;
-            border-radius: 20px !important;
-            overflow: hidden !important;
-            margin-bottom: 20px;
+            border: none;
+            border-radius: 18px;
+            background-color: #f0faf6;
         }
 
         .card-header {
-            background: #f7e1eb !important;
-            border: none !important;
-            padding: 15px !important;
+            background-color: #f7e1eb;
+            border: none;
+            border-radius: 18px 18px 0 0 !important;
         }
 
-        .card-body {
-            background: #f3fbf7 !important;
-            border: none !important;
-            padding: 18px !important;
+        .btn-primary {
+            background-color: #b9dff2;
+            border-color: #b9dff2;
+            color: #5f6470;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover {
+            background-color: #a8d3e8;
+            border-color: #a8d3e8;
+            color: #5f6470;
+        }
+
+        .btn-secondary {
+            border-radius: 12px;
         }
 
         input,
         textarea,
         select {
-            border: 2px solid #e3d9ef !important;
-            border-radius: 14px !important;
-            background: #fffaff !important;
-            padding: 10px !important;
+            border-radius: 10px !important;
         }
 
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #cdbde5 !important;
-            box-shadow: 0 0 0 3px #eee7f8 !important;
-        }
-
-        label {
-            color: #6f6585 !important;
-            font-weight: bold;
-        }
-
-        .alert {
-            border: none !important;
-            border-radius: 16px !important;
-        }
-
-        a {
-            color: #756b8c;
-        }
-
-        a:hover {
-            color: #d28aa7;
+        footer {
+            color: #8b819e;
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-light mb-4">
-
-        <div class="container-fluid">
-
-            <a class="navbar-brand"
-               href="{% url 'learning_logs:index' %}">
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
                 Curio Log
             </a>
 
             <button class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-
+                    data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
-
             </button>
 
-            <div class="collapse navbar-collapse"
-                 id="navbarCollapse">
-
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-                    <li class="nav-item">
-
-                        <a class="nav-link"
-                           href="{% url 'learning_logs:topics' %}">
-                            My Curiosities
-                        </a>
-
-                    </li>
-
-                </ul>
-
-
-                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
 
                     {% if user.is_authenticated %}
-
                         <li class="nav-item">
-
-                            <span class="navbar-text me-2">
-                                Hello, {{ user.username }}.
-                            </span>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <form method="post"
-                                  action="{% url 'accounts:logout' %}">
-
-                                {% csrf_token %}
-
-                                <button class="btn btn-link nav-link"
-                                        type="submit">
-                                    Log out
-                                </button>
-
-                            </form>
-
-                        </li>
-
-                    {% else %}
-
-                        <li class="nav-item">
-
                             <a class="nav-link"
-                               href="{% url 'accounts:login' %}">
+                               href="{% url 'learning_logs:topics' %}">
+                                My Curiosities
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'learning_logs:logout' %}">
+                                Log out
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'learning_logs:login' %}">
                                 Log in
                             </a>
-
                         </li>
-
                     {% endif %}
 
                 </ul>
-
             </div>
-
         </div>
-
     </nav>
 
-
     <main class="container">
-
         {% block content %}
         {% endblock content %}
-
     </main>
 
-
-    {% bootstrap_javascript %}
+    <footer class="container text-center mt-5 mb-4">
+        <p>Curio Log — Explore. Discover. Learn.</p>
+    </footer>
 
 </body>
 </html>
