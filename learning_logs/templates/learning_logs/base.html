@@ -1,113 +1,246 @@
 {% load django_bootstrap5 %}
-{% load static %}
-
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Learning Log</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Curio Log</title>
 
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'learning_logs/styles.css' %}">
-    {% bootstrap_javascript %}
+
+    <style>
+        body {
+            background: #fcf8ff !important;
+            color: #5b5665 !important;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #e9e1f7 !important;
+            border: none !important;
+            border-radius: 0 0 20px 20px !important;
+            padding: 14px 20px !important;
+        }
+
+        .navbar-brand {
+            color: #655b7d !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: #655b7d !important;
+            border-radius: 15px !important;
+            padding: 8px 14px !important;
+        }
+
+        .nav-link:hover {
+            background: #f6dce8 !important;
+            color: #655b7d !important;
+        }
+
+        .navbar-text {
+            color: #655b7d !important;
+        }
+
+        h1, h2, h3 {
+            color: #6f6585 !important;
+        }
+
+        .btn-primary {
+            background: #b9dff2 !important;
+            border: none !important;
+            border-radius: 18px !important;
+            padding: 10px 18px !important;
+            color: #53616a !important;
+        }
+
+        .btn-primary:hover {
+            background: #a8d4e9 !important;
+            color: #53616a !important;
+        }
+
+        .list-group {
+            border-radius: 18px !important;
+            overflow: hidden !important;
+        }
+
+        .list-group-item {
+            background: #fff5fa !important;
+            border: none !important;
+            border-bottom: 2px solid #f1e2eb !important;
+            padding: 15px !important;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .list-group-item a {
+            color: #756b8c !important;
+            text-decoration: none !important;
+        }
+
+        .list-group-item a:hover {
+            color: #d28aa7 !important;
+        }
+
+        .card {
+            background: #f0faf6 !important;
+            border: none !important;
+            border-radius: 20px !important;
+            overflow: hidden !important;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background: #f7e1eb !important;
+            border: none !important;
+            padding: 15px !important;
+        }
+
+        .card-body {
+            background: #f3fbf7 !important;
+            border: none !important;
+            padding: 18px !important;
+        }
+
+        input,
+        textarea,
+        select {
+            border: 2px solid #e3d9ef !important;
+            border-radius: 14px !important;
+            background: #fffaff !important;
+            padding: 10px !important;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #cdbde5 !important;
+            box-shadow: 0 0 0 3px #eee7f8 !important;
+        }
+
+        label {
+            color: #6f6585 !important;
+            font-weight: bold;
+        }
+
+        .alert {
+            border: none !important;
+            border-radius: 16px !important;
+        }
+
+        a {
+            color: #756b8c;
+        }
+
+        a:hover {
+            color: #d28aa7;
+        }
+    </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <nav class="navbar navbar-expand-md navbar-light mb-4">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <a class="navbar-brand"
-           href="{% url 'learning_logs:index' %}">
-            Learning Log
-        </a>
+            <a class="navbar-brand"
+               href="{% url 'learning_logs:index' %}">
+                Curio Log
+            </a>
 
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
 
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
 
-        </button>
+            </button>
 
-        <div class="collapse navbar-collapse"
-             id="navbarCollapse">
+            <div class="collapse navbar-collapse"
+                 id="navbarCollapse">
 
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{% url 'learning_logs:topics' %}">
-                        Topics
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- Account links -->
-            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-
-                {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
                     <li class="nav-item">
-                        <span class="navbar-text me-3">
-                            Hello, {{ user.username }}.
-                        </span>
-                    </li>
 
-                    <li class="nav-item">
-                        <form action="{% url 'accounts:logout' %}"
-                              method="post">
-                            {% csrf_token %}
-                            <button name="submit"
-                                    class="btn btn-link nav-link">
-                                Log out
-                            </button>
-                        </form>
-                    </li>
-
-                {% else %}
-
-                    <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'accounts:register' %}">
-                            Register
+                           href="{% url 'learning_logs:topics' %}">
+                            My Curiosities
                         </a>
+
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{% url 'accounts:login' %}">
-                            Log in
-                        </a>
-                    </li>
+                </ul>
 
-                {% endif %}
 
-            </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+
+                    {% if user.is_authenticated %}
+
+                        <li class="nav-item">
+
+                            <span class="navbar-text me-2">
+                                Hello, {{ user.username }}.
+                            </span>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <form method="post"
+                                  action="{% url 'accounts:logout' %}">
+
+                                {% csrf_token %}
+
+                                <button class="btn btn-link nav-link"
+                                        type="submit">
+                                    Log out
+                                </button>
+
+                            </form>
+
+                        </li>
+
+                    {% else %}
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               href="{% url 'accounts:login' %}">
+                                Log in
+                            </a>
+
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+
+            </div>
 
         </div>
 
-    </div>
+    </nav>
 
-</nav>
 
-<!-- Main part of the page -->
-<main class="container">
+    <main class="container">
 
-    <div class="pb-2 mb-2 border-bottom">
-        {% block page_header %}{% endblock page_header %}
-    </div>
+        {% block content %}
+        {% endblock content %}
 
-    {% block content %}{% endblock content %}
+    </main>
 
-</main>
+
+    {% bootstrap_javascript %}
 
 </body>
-
 </html>

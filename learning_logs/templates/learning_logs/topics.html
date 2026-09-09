@@ -1,34 +1,49 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block page_header %}
-    <h1>Topics</h1>
+
+```
+<h1>My Curiosities</h1>
+```
+
 {% endblock page_header %}
 
 {% block content %}
 
-    <ul class="list-group mb-3">
+```
+<ul class="list-group mb-3">
 
-        {% for topic in topics %}
+    {% for topic in topics %}
 
-            <li class="list-group-item">
-                <a href="{% url 'learning_logs:topic' topic.id %}">
-                    {{ topic }}
-                </a>
-            </li>
+        <li class="list-group-item">
 
-        {% empty %}
+            <a href="{% url 'learning_logs:topic' topic.id %}">
 
-            <li class="list-group-item">
-                No topics have been added yet.
-            </li>
+                {{ topic }}
 
-        {% endfor %}
+            </a>
 
-    </ul>
+        </li>
 
-    <a class="btn btn-primary"
-       href="{% url 'learning_logs:new_topic' %}">
-        Add a new topic
-    </a>
+    {% empty %}
+
+        <li class="list-group-item">
+
+            No curiosities have been added yet.
+
+        </li>
+
+    {% endfor %}
+
+</ul>
+
+
+<a class="btn btn-primary"
+   href="{% url 'learning_logs:new_topic' %}">
+
+    Add a New Curiosity
+
+</a>
+```
 
 {% endblock content %}

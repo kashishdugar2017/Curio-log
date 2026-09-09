@@ -2,14 +2,20 @@
 
 {% block content %}
 
-<p>Add a new entry:</p>
+<p>Add a New Discovery:</p>
 
-<p>Topic: {{ topic.text }}</p>
+<p>Curiosity: {{ topic.text }}</p>
 
-<form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
-    {% csrf_token %}
-    {{ form.as_div }}
-    <button name="submit">Add entry</button>
+<form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
+
+```
+{% csrf_token %}
+
+{{ form.as_div }}
+
+<button name="submit">Add Discovery</button>
+```
+
 </form>
 
 {% endblock content %}

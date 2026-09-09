@@ -1,41 +1,63 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block page_header %}
-    <h2>{{ topic }}</h2>
+
+```
+<h2>{{ topic }}</h2>
+```
+
 {% endblock page_header %}
 
 {% block content %}
 
-    <p>
-        <a class="btn btn-primary"
-           href="{% url 'learning_logs:new_entry' topic.id %}">
-            Add new entry
-        </a>
-    </p>
+```
+<p>
 
-    {% for entry in entries %}
+    <a class="btn btn-primary"
+       href="{% url 'learning_logs:new_entry' topic.id %}">
 
-        <div class="card mb-3">
+        Add a New Discovery
 
-            <div class="card-header">
-                <h5>
-                    {{ entry.date_added|date:'M d, Y H:i' }}
-                    <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}">
-                        Edit entry
-                    </a>
-                </h5>
-            </div>
+    </a>
 
-            <div class="card-body">
-                {{ entry.text|linebreaks }}
-            </div>
+</p>
+
+
+{% for entry in entries %}
+
+    <div class="card mb-3">
+
+        <div class="card-header">
+
+            <h5>
+
+                {{ entry.date_added|date:'M d, Y H:i' }}
+
+                <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}">
+
+                    Edit Discovery
+
+                </a>
+
+            </h5>
 
         </div>
 
-    {% empty %}
 
-        <p>There are no entries for this topic yet.</p>
+        <div class="card-body">
 
-    {% endfor %}
+            {{ entry.text|linebreaks }}
+
+        </div>
+
+    </div>
+
+
+{% empty %}
+
+    <p>There are no discoveries for this curiosity yet.</p>
+
+{% endfor %}
+```
 
 {% endblock content %}
