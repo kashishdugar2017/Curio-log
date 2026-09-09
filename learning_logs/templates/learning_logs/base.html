@@ -1,0 +1,113 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Learning Log</title>
+
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'learning_logs/styles.css' %}">
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand"
+           href="{% url 'learning_logs:index' %}">
+            Learning Log
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarCollapse">
+
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'learning_logs:topics' %}">
+                        Topics
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Account links -->
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <span class="navbar-text me-3">
+                            Hello, {{ user.username }}.
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:logout' %}"
+                              method="post">
+                            {% csrf_token %}
+                            <button name="submit"
+                                    class="btn btn-link nav-link">
+                                Log out
+                            </button>
+                        </form>
+                    </li>
+
+                {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'accounts:register' %}">
+                            Register
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'accounts:login' %}">
+                            Log in
+                        </a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- Main part of the page -->
+<main class="container">
+
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+    </div>
+
+    {% block content %}{% endblock content %}
+
+</main>
+
+</body>
+
+</html>

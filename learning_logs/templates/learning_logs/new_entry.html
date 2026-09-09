@@ -1,0 +1,15 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<p>Add a new entry:</p>
+
+<p>Topic: {{ topic.text }}</p>
+
+<form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit">Add entry</button>
+</form>
+
+{% endblock content %}

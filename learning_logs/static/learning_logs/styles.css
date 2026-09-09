@@ -1,0 +1,63 @@
+/* Whole page */
+body {
+    background-color: #fff5f8 !important;
+}
+
+/* Navigation bar - lavender */
+.navbar {
+    background-color: #e8ddf5 !important;
+}
+
+/* Headings */
+h1, h2 {
+    color: #6f5a7e;
+}
+
+/* Home page box - soft mint */
+.p-5 {
+    background-color: #dff5eb !important;
+    border-radius: 25px !important;
+}
+
+/* Cards - soft pink */
+.card {
+    background-color: #fff0f6 !important;
+    border: 2px solid #e8ddf5 !important;
+    border-radius: 20px !important;
+}
+
+/* Buttons - mint green */
+.btn-primary {
+    background-color: #a8d8c5 !important;
+    border-color: #a8d8c5 !important;
+    color: #33443d !important;
+    border-radius: 15px !important;
+}
+
+/* Button hover */
+.btn-primary:hover {
+    background-color: #8fc9b3 !important;
+    border-color: #8fc9b3 !important;
+}
+
+/* Topic list - pastel pink */
+.list-group-item {
+    background-color: #fff0f6 !important;
+    border: none !important;
+    margin-bottom: 10px;
+    border-radius: 15px !important;
+}
+
+/* Entry card header - mint */
+.card-header {
+    background-color: #dff5eb !important;
+}
+
+/* Links */
+a {
+    color: #7d5f91;
+}
+
+a:hover {
+    color: #c26b9b;
+}
