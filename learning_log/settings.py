@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2o3qa&c1w&2js0a61cn!jle6^fs=)2+kjtrqgf^!f@+3tt%3nc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["curio-log.onrender.com"]
 
 
 # Application definition
