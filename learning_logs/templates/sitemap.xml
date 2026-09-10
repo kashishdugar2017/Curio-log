@@ -2,17 +2,18 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Curio Log homepage -->
     <url>
         <loc>https://curio-log.onrender.com/</loc>
     </url>
 
-    <!-- Login page -->
+    <url>
+        <loc>https://curio-log.onrender.com/about/</loc>
+    </url>
+
     <url>
         <loc>https://curio-log.onrender.com/login/</loc>
     </url>
 
-    <!-- Create an account page -->
     <url>
         <loc>https://curio-log.onrender.com/accounts/register/</loc>
     </url>
