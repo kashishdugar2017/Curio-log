@@ -1,31 +1,55 @@
-{% extends 'learning_logs/base.html' %}
+{% extends "learning_logs/base.html" %}
+
+{% block title %}Curio Log — Explore, Discover, Learn{% endblock title %}
 
 {% block content %}
 
-<div class="p-5 mb-4 bg-light rounded-3">
+<div class="p-5 mb-4 rounded-4"
+     style="background-color: #f7e1eb;">
 
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-4">
 
-        <h1 class="display-3">
+        <h1 class="display-4 fw-bold">
             Welcome to Curio Log!
         </h1>
 
+        <p class="lead mt-4">
+            Curio Log is a personal learning journal designed for
+            curious minds who enjoy exploring new ideas, recording
+            interesting discoveries, and keeping track of the things
+            they learn.
+        </p>
+
         <p class="lead">
-            Explore your curiosities, record your discoveries,
-            and keep track of everything you learn.
+            Use Curio Log to create your own collection of curiosities.
+            Add topics that interest you, write down discoveries,
+            record new information, and return to your notes whenever
+            you want to remember what you learned.
+        </p>
+
+        <p class="lead">
+            Whether you are learning about programming, mathematics,
+            science, swimming, history, languages, or something
+            completely unexpected, Curio Log gives you a simple place
+            to organize your learning journey.
+        </p>
+
+        <p class="lead">
+            Explore your curiosities, record your discoveries, and
+            build your own personal library of things you have learned.
         </p>
 
         {% if user.is_authenticated %}
 
-            <a class="btn btn-primary btn-lg"
+            <a class="btn btn-primary btn-lg mt-3"
                href="{% url 'learning_logs:topics' %}">
                 Explore My Curiosities
             </a>
 
         {% else %}
 
-            <a class="btn btn-primary btn-lg"
-               href="{% url 'accounts:register' %}">
+            <a class="btn btn-primary btn-lg mt-3"
+               href="{% url 'learning_logs:login' %}">
                 Start Exploring
             </a>
 
