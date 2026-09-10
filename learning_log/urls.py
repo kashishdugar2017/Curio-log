@@ -10,6 +10,14 @@ path("", include("learning_logs.urls")),
 path("accounts/", include("accounts.urls")),
 
 path(
+    "about/",
+    TemplateView.as_view(
+        template_name="learning_logs/about.html"
+    ),
+    name="about",
+),
+
+path(
     "robots.txt",
     TemplateView.as_view(
         template_name="robots.txt",
