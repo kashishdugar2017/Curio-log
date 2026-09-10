@@ -1,149 +1,160 @@
 {% load django_bootstrap5 %}
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-```
-<title>{% block title %}Curio Log{% endblock title %}</title>
+    <title>{% block title %}Curio Log{% endblock title %}</title>
 
-<meta name="description"
-      content="Curio Log is a personal learning journal where you can explore curiosities, record discoveries, and keep track of what you learn.">
+    <meta name="description"
+          content="Curio Log is a personal learning journal where you can explore curiosities, record discoveries, and keep track of what you learn.">
 
-<meta name="keywords"
-      content="Curio Log, learning log, curiosities, discoveries, learning journal">
+    <meta name="keywords"
+          content="Curio Log, learning log, curiosities, discoveries, learning journal">
 
-<meta name="author" content="Curio Log">
+    <meta name="author" content="Curio Log">
 
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+    {% bootstrap_css %}
 
-<style>
-    body {
-        background-color: #fcf8ff;
-        color: #6f6585;
-    }
+    <style>
+        body {
+            background-color: #fcf8ff;
+            color: #6f6585;
+        }
 
-    .navbar {
-        background-color: #e9e1f7 !important;
-    }
+        .navbar {
+            background-color: #e9e1f7 !important;
+        }
 
-    .navbar-brand {
-        color: #6f6585 !important;
-        font-weight: 600;
-    }
+        .navbar-brand {
+            color: #6f6585 !important;
+            font-weight: 600;
+        }
 
-    .nav-link {
-        color: #6f6585 !important;
-    }
+        .nav-link {
+            color: #6f6585 !important;
+        }
 
-    .nav-link:hover {
-        background-color: #f6dce8;
-        border-radius: 10px;
-    }
+        .nav-link:hover {
+            background-color: #f6dce8;
+            border-radius: 10px;
+        }
 
-    .card {
-        border: none;
-        border-radius: 18px;
-        background-color: #f0faf6;
-    }
+        .card {
+            border: none;
+            border-radius: 18px;
+            background-color: #f0faf6;
+        }
 
-    .card-header {
-        background-color: #f7e1eb;
-        border: none;
-        border-radius: 18px 18px 0 0 !important;
-    }
+        .card-header {
+            background-color: #f7e1eb;
+            border: none;
+            border-radius: 18px 18px 0 0 !important;
+        }
 
-    .btn-primary {
-        background-color: #b9dff2;
-        border-color: #b9dff2;
-        color: #5f6470;
-        border-radius: 12px;
-    }
+        .btn-primary {
+            background-color: #b9dff2;
+            border-color: #b9dff2;
+            color: #5f6470;
+            border-radius: 12px;
+        }
 
-    .btn-primary:hover {
-        background-color: #a8d3e8;
-        border-color: #a8d3e8;
-        color: #5f6470;
-    }
+        .btn-primary:hover {
+            background-color: #a8d3e8;
+            border-color: #a8d3e8;
+            color: #5f6470;
+        }
 
-    .btn-secondary {
-        border-radius: 12px;
-    }
+        .btn-secondary {
+            border-radius: 12px;
+        }
 
-    input,
-    textarea,
-    select {
-        border-radius: 10px !important;
-    }
+        input,
+        textarea,
+        select {
+            border-radius: 10px !important;
+        }
 
-    footer {
-        color: #8b819e;
-    }
-</style>
-```
-
+        footer {
+            color: #8b819e;
+        }
+    </style>
 </head>
 
 <body>
 
-```
-<nav class="navbar navbar-expand-lg mb-4">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
 
-        <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-            Curio Log
-        </a>
+            <a class="navbar-brand"
+               href="{% url 'learning_logs:index' %}">
+                Curio Log
+            </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+                <span class="navbar-toggler-icon"></span>
 
-            <ul class="navbar-nav ms-auto">
+            </button>
 
-                {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse" id="navbarNav">
 
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{% url 'learning_logs:topics' %}">
-                            My Curiosities
-                        </a>
-                    </li>
+                <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{% url 'learning_logs:logout' %}">
-                            Log out
-                        </a>
-                    </li>
+                    {% if user.is_authenticated %}
 
-                {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'learning_logs:topics' %}">
+                                My Curiosities
+                            </a>
+                        </li>
 
-            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'learning_logs:logout' %}">
+                                Log out
+                            </a>
+                        </li>
+
+                    {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'learning_logs:login' %}">
+                                Log in
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+
+            </div>
 
         </div>
-    </div>
-</nav>
+    </nav>
 
-<main class="container">
+    <main class="container">
 
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
 
-</main>
+    </main>
 
-<footer class="container text-center mt-5 mb-4">
-    <p>Curio Log — Explore. Discover. Learn.</p>
-</footer>
-```
+    <footer class="container text-center mt-5 mb-4">
+        <p>Curio Log — Explore. Discover. Learn.</p>
+    </footer>
+
+    {% bootstrap_javascript %}
 
 </body>
 </html>
