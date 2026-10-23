@@ -14,3 +14,6 @@ Curio Log is a fun web application built with **Django** designed to help curiou
 
 ## How to Use
 1.Go to `https://curio-log.onrender.com
+
+## Credits
+- Used **Python Crash Course By eric matthes** as a guide
